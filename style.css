@@ -1,0 +1,651 @@
+:root {
+    --lightgrey: #818181;
+    --grey: #323232;
+    --darkgrey: #181818;
+
+    --theme-black: #1F2539;
+    --theme-white: #FFF;
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+
+html,
+body {
+    height:100%;
+    width:100%;
+
+    background:var(--theme-black);
+    color:var(--theme-white)
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family:"Roboto Mono", monospace;
+    font-weight:normal;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:20px;
+}
+
+h5,
+h6 {
+    font-weight:normal;
+}
+
+
+/* LOGIN STYLE */
+
+body#loginpage,
+body#daispage {
+    height:100%;
+    width:100%;
+    display:flex;
+    align-items:center;
+}
+
+.cool-decal-or-whatever {
+    right:-20vh;
+    position:fixed;
+    user-select:none;
+}
+
+.cool-decal-or-whatever img {
+    height:90vh;
+    float:right;
+    filter:opacity(0.1);
+}
+
+.login-container {
+    margin-left:10vh;
+    width:400px;
+    height:auto;
+    box-sizing:border-box;
+    padding:4vh;
+
+    background:rgba(0,0,0,0);
+
+    display:flex;
+    flex-direction:column;
+    z-index:100;
+    position:absolute;
+}
+
+.login-container form input {
+    display:block;
+}
+
+.login-container h2 {
+    font-size:14px;
+    padding-top:7px;
+}
+
+.login-container a {
+    font-size:14px;
+    padding-top:7px;
+    color:white;
+    font-family:"Roboto Mono", monospace;
+    font-weight:normal;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.login-container form input[type="text"],
+.login-container form input[type="password"],
+.login-container form input[type="submit"] {
+    width:100%;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:16px;
+    letter-spacing:0.5px;
+    border-style:none none solid none;
+    border-width:1.5px;
+
+    margin-top:30px;
+    background:rgba(0,0,0,0.3);
+
+    color:white;
+    font-family:"Roboto Mono", monospace;
+}
+
+.login-container form input[type="submit"] {
+    border:none;
+    padding:15px 20px;
+    background:var(--darkgrey);
+    font-size:14px;
+    text-align:left;
+    color:var(--lightgrey);
+    width:auto;
+    display:table;
+    transition:color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-container form input[type="submit"]:hover {
+    cursor:pointer;
+    color:white;
+}
+
+
+.note {
+    font-family:"Source Sans Pro", sans-serif;
+    width:100%;
+    text-align:center;
+    padding-top:47vh;
+}
+
+.note a {
+    color:white;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .login-container {
+        margin:0 auto;
+    }
+
+    .cool-decal-or-whatever {
+        right:50vw;
+        transform:translateX(50%);
+        z-index:0;
+    }
+}
+
+
+
+/* USER CONTROL PANEL */
+
+/*
+.report-problem {
+    position:fixed;
+    top:0;
+    right:0;
+    padding-right:10px;
+    height:50px;
+    line-height:45px;
+    display:flex;
+    align-items:center;
+    width:100%;
+    justify-content: flex-end;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0));
+}
+
+.report-problem p {
+    font-family:"Source Sans Pro", sans-serif;
+    padding-right:10px;
+}
+
+.report-problem a {
+    font-size:20px;
+    line-height:45px;
+    color:var(--theme-white);
+}
+
+.log-out {
+    position:fixed;
+    top:40px;
+    right:0;
+    padding-right:10px;
+}
+
+.log-out a {
+    text-decoration:none;
+    color:white;
+    font-family:"Source Sans Pro", sans-serif;
+
+}
+*/
+
+.user-profile {
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-end;
+
+    box-sizing:border-box;
+    padding:007vw;
+}
+
+.stats-attack-container {
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+    width:86vw;
+    margin:200px auto 0 auto;
+}
+
+.user-stats,
+.grid,
+.attack {
+    box-sizing:border-box;
+    width:86vw;
+    padding: 5vw;
+    background:white;
+    color:black;
+}
+
+.grid {
+    margin:7vw auto;
+    padding:0;
+    background:var(--darkgrey);
+    border-radius:4px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.grid table {
+    width:100%;
+    min-width:620px;
+    font-family:"Roboto Mono", monospace;
+    table-layout: fixed;
+}
+
+.grid table tr {
+    width:100%;
+}
+
+.grid table td {
+    width:calc(100% / 11) !important;
+    height:7vh;
+    font-weight:700;
+    text-align:center;
+    color:white;
+    text-transform: uppercase;
+}
+
+.battleship table td {
+    width:calc(100% / 11);
+    height:5vh;
+    text-align: center;
+}
+
+.user-stats {
+
+}
+
+.stat-item {
+    display:flex;
+    justify-content: space-between;
+    font-family:"Roboto Mono", monospace;
+    font-size:20px;
+    line-height:40px;
+    padding-top:10px;
+    border-style: none none dotted none;
+    border-width:3px;
+    border-color: var(--lightgrey);
+    width:100%;
+}
+
+.stat-item:last-child {
+    border:none;
+}
+
+.stat-item h5,
+.stat-item h6 {
+    font-size:18px;
+    letter-spacing:0.5px;
+    margin:10px 10px 10px 0;
+}
+
+.stat-item h6.updateable {
+    font-size:16px;
+    background:var(--darkgrey);
+    padding:0 20px;
+    color:white;
+}
+
+.stat-item h5 {
+    font-weight:bold;
+}
+
+.powerups {
+    display:flex;
+}
+
+.user-stats h3,
+.attack h3 {
+    font-weight:700;
+}
+
+.attack {
+    background:var(--darkgrey);
+    border-radius:4px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.attack * {
+    color:white;
+}
+
+.attack h4 {
+    padding-bottom:20px;
+}
+
+.user-stats h5 {
+    font-family:"Roboto Mono", monospace;
+    font-weight:700;
+}
+
+.x-c,
+.y-c {
+    display:flex;
+}
+
+.x-c h5,
+.y-c h5 {
+    font-family:"Roboto Mono", monospace;
+    font-weight:700;
+    width:auto;
+    line-height:35px;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:20px;
+    letter-spacing:0.5px;
+}
+
+form.coordinates {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.coordinates-container {
+    display:flex;
+    flex-direction:column;
+    width:100%;
+}
+
+form.coordinates input[type="text"],
+form.coordinates input[type="submit"] {
+    width:100%;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:16px;
+    letter-spacing:0.5px;
+    border-style:none none solid none;
+    border-width:1.5px;
+
+    margin:7px 0 20px 0;
+    background:rgba(145, 4, 4, 0.5);
+
+    color:white;
+    font-family:"Roboto Mono", monospace;
+}
+
+form.coordinates input[type="submit"] {
+    border:none;
+    padding:15px 20px;
+    background:rgba(0, 0, 0, 0.5);
+    font-size:14px;
+    text-align:left;
+    color:white;
+    text-transform: uppercase;
+    font-weight:700;
+    letter-spacing:2px;
+    width:auto;
+    display:table;
+    transition:background 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+form.coordinates input[type="submit"]:hover {
+    cursor:pointer;
+    background:darkred;
+}
+
+
+/* DAIS CONTROL PANEL STYLES */
+
+.dais-header {
+    position:absolute;
+    width:100%;
+    top:0;
+    right:0;
+    height:150px;
+    z-index:2000;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.dais-header a {
+    color:white;
+    font-family:"Roboto Mono", monospace;
+    display:block;
+}
+
+.dais-header .logo img {
+    height:80px;
+    margin-right:30px;
+    filter:brightness(1000%);
+}
+
+.dais-header .logo {
+    display:flex;
+    align-items:center;
+    padding-left:5vh;
+}
+
+.dais-header .logo h1 {
+    font-weight:700;
+}
+
+.dais-header .logo h2 {
+    font-size:16px;
+}
+
+.dais-header .dais-help {
+    padding-right:5vh;
+    text-align:right;
+}
+
+.dais-header .dais-help a {
+    font-family:"Roboto Mono", monospace;
+    text-transform: uppercase;
+}
+
+.dais-container * {
+    font-family:"Roboto Mono", monospace;
+}
+
+.dais-container {
+    position:absolute;
+    top:150px;
+    width:100%;
+    min-height:100%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.right-col,
+.left-col {
+    width:50%;
+    box-sizing: border-box;
+    padding:5vh;
+}
+
+.left-col table,
+.right-col table {
+    width:100%;
+    box-sizing: border-box;
+    padding:20px;
+}
+
+.left-col table td,
+.right-col table td {
+    box-sizing: border-box;
+    padding:5px;
+}
+
+.left-col {
+    display:flex;
+    flex-direction:column;
+}
+
+.left-col .humanity,
+.left-col .aliens,
+.left-col .utility,
+.right-col .battleship,
+.right-col .gamelog {
+    box-sizing: border-box;
+    background:rgba(0,0,0,0.3);
+}
+
+.left-col .aliens,
+.left-col .utility {
+    margin-top:5vh;
+}
+
+.right-col .gamelog {
+    margin-top:5vh;
+}
+
+.humanity h4,
+.aliens h4,
+.battleship h4,
+.gamelog h4,
+.utility h4 {
+    padding:20px;
+    background:var(--darkgrey);
+    letter-spacing:2px;
+    font-weight:700;
+}
+
+.battleship table {
+    min-width:600px;
+    font-family:"Roboto Mono", monospace;
+    table-layout: fixed;
+}
+
+.utility form {
+    box-sizing:border-box;
+    padding:5vh;
+}
+
+.utility form input[type="text"],
+.utility form input[type="submit"] {
+    width:100%;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:16px;
+    letter-spacing:0.5px;
+    border-style:none none solid none;
+    border-width:1.5px;
+
+    margin:7px 0 20px 0;
+    background:rgba(163, 4, 4, 0.5);
+
+    color:white;
+    font-family:"Roboto Mono", monospace;
+}
+
+.utility form select {
+    width:100%;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:16px;
+    letter-spacing:0.5px;
+    border-style:none none solid none;
+    border-width:1.5px;
+    margin:7px 0 20px 0;
+    background:rgba(163, 4, 4, 0.5);
+    color:white;
+}
+
+.utility form input[type="submit"] {
+    border:none;
+    padding:15px 20px;
+    background:rgba(163, 4, 4, 0.5);
+    font-size:14px;
+    text-align:left;
+    color:white;
+    text-transform: uppercase;
+    font-weight:700;
+    letter-spacing:2px;
+    width:auto;
+    display:table;
+    transition:background 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.utility form input[type="submit"]:hover {
+    cursor:pointer;
+    background:darkred;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .dais-container {
+        flex-direction:column;
+    }
+
+    .right-col,
+    .left-col {
+        width:100%;
+    }
+
+    .humanity,
+    .aliens,
+    .utility,
+    .battleship,
+    .gamelog {
+        overflow:auto;
+    }
+
+    .humanity h4,
+    .aliens h4,
+    .utility h4,
+    .battleship h4,
+    .gamelog h4 {
+        width:inherit;
+        display:block;
+        background:rgba(0,0,0,0);
+    }
+}
+
+@media only screen and (max-width: 1550px) {
+    .dais-container {
+        flex-direction:column;
+    }
+
+    .left-col,
+    .right-col {
+        width:100%;
+    }
+
+    .stats-attack-container {
+        flex-direction:column;
+    }
+
+    .user-stats,
+    .attack {
+        width:100%;
+        overflow:auto;
+    }
+
+    .grid {
+        overflow:auto;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .dais-header {
+        margin:3vh 0;
+        flex-direction:column;
+        justify-content: center;
+        align-items:flex-start;
+    }
+
+    .dais-header .dais-help {
+        padding:1vh 0 0 5vh;
+        text-align:left;
+    }
+
+    .dais-header .dais-help a {
+        text-decoration:none;
+        padding-top:5px;
+    }
+}
