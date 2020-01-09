@@ -1,6 +1,8 @@
 # ADHOC-Battleship
 Online battleship platform for PacificMUN 2020 ADHOC Committee
 
+Live version can be found at: adhoc.pacificmun.org
+
 Pages it includes:
  - Log-in page (log in as either staff or delegate... login credentials are hard-coded since I had to rush coding the system. Not too bad because there are only 9 possible logins
  - Delegate/Agent portal page -- shows their stats (health, # of missiles, name, etc.) & battleship grid
