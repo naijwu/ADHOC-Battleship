@@ -15,7 +15,7 @@ Currently in Beta stage. Missing five things (but still functioning\*):
 4. Logging of every action made by delegates
 5. Action completion/error notification
 
-There are quite a few lines of code that are not too optimized, as I only had several days to complete it.
+There are quite a few lines of code that are not adequately optimized, as I was rushing its completion.
 
 Database-y things:
  - One database (ADHOCY) with two tables (master, grid)
