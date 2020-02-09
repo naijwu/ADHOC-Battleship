@@ -19,7 +19,7 @@
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Days+One|Source+Sans+Pro|Roboto+Mono:400,700&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/53f2cb228f.js" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
     <body id="daispage">
@@ -36,7 +36,8 @@
                         </div>
                         <div class="dais-help">
                             <a href="tel:778.245.3794"><i class="fa fa-info-circle"></i> Report an Issue</a>
-                            <a href="logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a>
+                            <a href="logout.inc.php"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+                            <a href="dais.php"><i class="fas fa-redo"></i> Update</a>
                         </div>
                     </div>
                     <div class="dais-container">
@@ -52,7 +53,7 @@
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Missiles</td>
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">M. Used</td>
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Lives</td>
-                                        <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Power Up?</td>
+                                        <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Charged?</td>
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Login Pass</td>
                                     </tr>
 _;
@@ -88,7 +89,7 @@ echo<<<_
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Missiles</td>
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">M. Used</td>
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Lives</td>
-                                        <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Power Up?</td>
+                                        <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Charged?</td>
                                         <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Login Pass</td>
                                     </tr>
 _;
@@ -131,13 +132,23 @@ echo<<<_
                                     <select name="stat">
                                         <option value="missiles">Missiles</option>
                                         <option value="lives">Lives</option>
-                                        <option value="powerup">Powered Attack</option>
+                                        <option value="ischarged">Powered Attack</option>
                                     </select>
                                     <h5>Value to Update To</h5>
                                     <input type="text" name="statvalue">
                                     <input type="submit" name="submitchange" value="Execute">
-                                    <h5>*NOTE: Be careful, stats updated wrongly can really mess up the system :O <br>
-                                    Also, to reward a delegate a powered attack, the value should be a "1"</h5>
+                                    <h5>*NOTE: Be careful, stats updated wrongly can really mess up the system :O There is no confirm button. <br><br>
+                                    Also, to reward/take away from a delegate a powered attack, the value should be a "1" The value changes automatically 
+                                    if they hit a powerup. Just in case you want to make their lives miserable.</h5>
+                                </form>
+                            </div>
+                            <div class="utility">
+                                <h4>Reset Game</h4>
+                                <form action="reset.inc.php" method="POST">
+                                    <h5>Please type "ADHOCYGAMERESET" to confirm:</h5>
+                                    <input type="text" name="confirmtext" required>
+                                    <input type="submit" name="resetconfirm" value="Reset Game">
+                                    <h5>*DANGER: This action cannot be reversed. The game log will also be cleared. </h5>
                                 </form>
                             </div>
                         </div>
@@ -176,6 +187,7 @@ _;
                             $humanity = "#0099FF";
                             $aliens = "#33CC33";
                             $powerup = "#FF9900";
+                            $poweruphit = "darkmagenta";
                             $missfire = "#66CCFF";
 
                             // CELL CHECKS:
@@ -248,12 +260,24 @@ _;
                                                 }
                                             }
                                         } else if(strpos($cell, $powercheck) !== false) { // CHECK IF this coordinate has a powerupif(strpos($cell, "M") !== false) {
-                                            if(strpos($cell, "-GD") !== false) { // CHECK IF hit
-                                                echo "<td style='background:" . $powerup . "'>Golden Directive</td>";
-                                            } else if(strpos($cell, "-S") !== false) {
-                                                echo "<td style='background:" . $powerup . "'>Silence</td>";
+                                            if(strpos($cell, "-GD") !== false) { 
+                                                if(strpos($cell, $hitcheck) !== false) { // CHECK IF hit
+                                                    echo "<td style='background:" . $poweruphit . "'>Golden Directive - Hit</td>";
+                                                } else {
+                                                    echo "<td style='background:" . $powerup . "'>Golden Directive</td>";
+                                                }
+                                            } else if(strpos($cell, "-SI") !== false) {
+                                                if(strpos($cell, $hitcheck) !== false) { // CHECK IF hit
+                                                    echo "<td style='background:" . $poweruphit . "'>Silence - Hit</td>";
+                                                } else {
+                                                    echo "<td style='background:" . $powerup . "'>Silence</td>";
+                                                }
                                             } else {
-                                                echo "<td style='background:" . $powerup . "'>Death Ray</td>";
+                                                if(strpos($cell, $hitcheck) !== false) { // CHECK IF hit
+                                                    echo "<td style='background:" . $poweruphit . "'>Death Ray - Hit</td>";
+                                                } else {
+                                                    echo "<td style='background:" . $powerup . "'>Death Ray</td>";
+                                                }
                                             }
                                         } else if(strpos($cell, $alienmissfire) !== false) { // CHECK IF Team Aliens missfired on this coordinate
                                             echo "<td style='background:" . $missfire . "'>Miss Fire</td>";
@@ -275,7 +299,7 @@ echo<<<_
                                 <h4>Activity Log</h4>
                                 <table>
                                     <tr>
-                                        <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Delegate Log | (What | When)</td>
+                                        <td style="font-weight:700; text-transform:uppercase; letter-spacing:0.4px;padding-top:10px;padding-bottom:10px;">Delegate Log | (WHEN: WHO WHAT)</td>
                                     </tr>
 _;
                                     require_once 'dbh.inc.php';
@@ -285,7 +309,12 @@ _;
                                     
                                     if ($result-> num_rows > 0) {
                                         while ($row = $result-> fetch_assoc()) {
-                                            echo '<tr><td>' . $row['log'] . '</td>';                                                                          }
+                                            if ($row['log'] !== "") {
+                                                echo '<tr><td>' . $row['log'] . '</td>';   
+                                            } else {
+                                                echo "";
+                                            }
+                                        }
                                         echo '</table>';
                                     } else {
                                         echo 'Error -- Contact/Beatup Jae Wu via Call';

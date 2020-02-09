@@ -227,7 +227,7 @@ body#daispage {
     width:86vw;
     padding: 5vw;
     background:white;
-    color:black;
+    color:white;
 }
 
 .grid {
@@ -236,6 +236,26 @@ body#daispage {
     background:var(--darkgrey);
     border-radius:4px;
     box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.notification-box {
+    margin:0 auto;
+    margin-top:175px;
+    margin-bottom:-120px;
+    box-sizing:border-box;
+    width:86vw;
+    padding: 2vw;
+    background:var(--darkgrey);
+    border-radius:4px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.notification-box.green {
+    background:rgba(7, 139, 7, 0.603);
+}
+
+.notification-box.red {
+    background:rgba(145, 4, 4, 0.5);
 }
 
 .grid table {
@@ -265,8 +285,8 @@ body#daispage {
 }
 
 .user-stats {
-
-}
+    background:rgba(36, 36, 37, 0.616);
+} 
 
 .stat-item {
     display:flex;
@@ -446,6 +466,8 @@ form.coordinates input[type="submit"]:hover {
 .dais-header .dais-help a {
     font-family:"Roboto Mono", monospace;
     text-transform: uppercase;
+    text-decoration:none;
+    padding-top:7px;
 }
 
 .dais-container * {
@@ -527,7 +549,8 @@ form.coordinates input[type="submit"]:hover {
 }
 
 .utility form input[type="text"],
-.utility form input[type="submit"] {
+.utility form input[type="submit"],
+a.form-button {
     width:100%;
     padding:15px;
     box-sizing:border-box;
@@ -556,7 +579,8 @@ form.coordinates input[type="submit"]:hover {
     color:white;
 }
 
-.utility form input[type="submit"] {
+.utility form input[type="submit"],
+a.form-button {
     border:none;
     padding:15px 20px;
     background:rgba(163, 4, 4, 0.5);
@@ -571,11 +595,19 @@ form.coordinates input[type="submit"]:hover {
     transition:background 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.utility form input[type="submit"]:hover {
+.utility form input[type="submit"]:hover,
+a.form-button:hover {
     cursor:pointer;
     background:darkred;
 }
 
+a.form-button {
+    text-decoration:none;
+}
+
+a.form-button:focus {
+    
+}
 
 @media only screen and (max-width: 600px) {
     .dais-container {
