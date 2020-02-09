@@ -8,12 +8,7 @@ Pages it includes:
  - Delegate/Agent portal page -- shows their stats (health, # of missiles, name, etc.) & battleship grid
  - Dais/Staff control panel page (shows all delegates, the grid, and includes function to change any delegates' stats)
 
-Currently in Beta stage. Missing five things (but still functioning\*):
-1. \*Special attack (when isCharged = true) "Death Ray"
-2. Lives taken off automatically on hit
-3. Button to reset to default system
-4. Logging of every action made by delegates
-5. Action completion/error notification
+Currently in Beta stage
 
 There are quite a few lines of code that are not adequately optimized, as I was rushing its completion.
 
